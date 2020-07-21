@@ -1,0 +1,119 @@
+{% extends "layout.html" %}
+
+{% block title %}
+
+  register
+
+{% endblock %}
+
+{% block main %}
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.2.0/zxcvbn.js"></script>
+
+<script>
+
+
+
+
+
+
+window.onload=function()
+{
+var strength = {
+    0: "Worst ☹",
+    1: "Bad ☹",
+    2: "Weak ☹",
+    3: "Good ☺",
+    4: "Strong ☻"
+};
+var usname = document.getElementById('username1');
+var password = document.getElementById('password1');
+var check = document.getElementById('check-status');
+var meter = document.getElementById('password-strength-meter');
+var text = document.getElementById('password-strength-text');
+var confirm = document.getElementById('password-check');
+var val ;
+
+
+
+
+password.addEventListener('input', function() {
+  val = password.value;
+  var result = zxcvbn(val);
+
+  // Update the password strength meter
+  meter.value = result.score;
+
+  // Update the text indicator
+  if (val !== "") {
+    text.innerHTML = "Strength: " + "<strong>" + strength[result.score] +
+    "</strong>" + "<span class='feedback'>" + result.feedback.warning + " " + result.feedback.suggestions + "</span";
+  } else {
+    text.innerHTML = "";
+  }
+});
+
+
+
+confirm.addEventListener('input', function(){
+    var vall = confirm.value;
+    val = password.value;
+
+    if( vall !== val){
+        check.innerHTML = "Passwords do not match";
+    }
+    else if (vall == val)
+    {
+        check.innerHTML = "Passwords match";
+    }
+    else
+    {
+        check.innerHTML = "";
+    }
+
+});
+
+
+window.validateforms=function (){
+
+    if(usname.value == null || usname.value == "")
+    {
+        alert("username cannot be left blank");
+        return false;
+    }
+    else if(password.length<6){
+  alert("Password must be at least 6 characters long.");
+  return false;
+    }
+}
+
+
+}
+</script>
+
+<form action="/register" method="post" onsubmit="return validateforms();">
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" name="username" id="username1" placeholder="Username"  type="text">
+                                  <p style = "color:red" >{{ message }}</p>
+        </div>
+        <div class="form-group">
+            <input class="form-control" name="password" id="password1" placeholder="Password" type="password" required >
+
+                <meter max="4" id="password-strength-meter"></meter>
+            <p id="password-strength-text"> </p>
+            </div>
+        </div>
+        <div class="from-group">
+            <input class="form-control" name="confirm_password" id = "password-check" placeholder="confirm Password" type="password" required>
+            <p id="check-status"></p>
+        </div>
+        <br>
+        <button class="btn btn-primary" type="submit">Register</button>
+        <p style="color:red">{{ pass_message }}</p>
+
+    </form>
+
+
+{% endblock %}

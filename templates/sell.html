@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+{% block title %}
+
+  buy
+
+{% endblock %}
+
+{% block main %}
+
+<!--<script>-->
+<!--    window.onload=function()-->
+<!--    {-->
+
+<!--var x = document.getElementById("mySelect");-->
+<!--var opt = document.createElement("option");-->
+<!--opt.value=-->
+<!--x.addEventListener()-->
+<!--var option = document.createElement("option");-->
+<!--option.text = "Kiwi";-->
+<!--x.add(option);-->
+<!--    }-->
+<!--</script>-->
+
+<form action="/sell" method = "post">
+<div class="form-group " style="position:center">
+<select class = "form-control" id="myselect" name ="selected-symbol">
+        <option disabled selected value>Symbol</option>
+        {% for option in list %}
+        <option value="{{option['symbol']}}">{{option['symbol']}}</option>
+        {% endfor %}
+</select>
+</div>
+<div class="form-group">
+            <input autocomplete="off" min="1" autofocus class="form-control" name="shares" id="shares" placeholder="shares"  type="number">
+        </div>
+        <div class="form-group">
+            <button class="btn btn-primary" type="submit">Sell</button>
+        </div>
+
+
+</form>
+
+{% endblock %}
