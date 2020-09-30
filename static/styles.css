@@ -61,6 +61,7 @@ meter[value="4"]::-webkit-meter-optimum-value { background: green; }
 
 
 meter {
+    
   /* Reset the default appearance */
   -webkit-appearance: none;
      -moz-appearance: none;

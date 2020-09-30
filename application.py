@@ -6,7 +6,7 @@ from flask_session import Session
 from tempfile import mkdtemp
 from werkzeug.exceptions import default_exceptions, HTTPException, InternalServerError
 from werkzeug.security import check_password_hash, generate_password_hash
-
+from stockprediction import get_prediction
 from helpers import apology, login_required, lookup, usd
 
 message = {"buy":"", "sold":""}
@@ -186,9 +186,11 @@ def quote():
         # get the symbol from the user
         symbol = request.form.get("symbol")
         # lookup the symbol and store the returned dict
+        predict = 22
+        predict = get_prediction(symbol, 2)
         dict = lookup(symbol)
         if dict:
-                str = " A share of {company} {symbol} costs {price}".format(company=dict["name"], symbol=dict["symbol"], price=usd(dict["price"]))
+                str = " A share of {company} {symbol} costs {price}. Its predicted price for next 2 days is {predict}.".format(company=dict["name"], symbol=dict["symbol"], price=usd(dict["price"]), predict = [usd(predict[0]),usd(predict[1])])
                 return render_template("quoted.html", quoted = str)
         else:
             flash("Sorry no such company")
