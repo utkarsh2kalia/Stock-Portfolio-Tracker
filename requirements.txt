@@ -7,4 +7,5 @@ yfinance
 numpy
 sklearn
 selenium
+iexfinance
 pandas_datareader
