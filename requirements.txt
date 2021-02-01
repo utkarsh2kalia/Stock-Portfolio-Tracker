@@ -2,4 +2,9 @@ cs50
 Flask
 Flask-Session
 requests
+gunicorn
 yfinance
+numpy
+sklearn
+selenium
+pandas_datareader

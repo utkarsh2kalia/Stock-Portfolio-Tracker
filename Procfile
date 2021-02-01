@@ -1,2 +1,1 @@
-web: pip install -r requirements.txt
-web: flask run
+web: gunicorn app:application.py
