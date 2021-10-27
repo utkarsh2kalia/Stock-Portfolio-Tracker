@@ -9,7 +9,7 @@ Click==7.0
 cloudpickle==1.6.0
 colorama==0.4.4
 cs50==6.0.2
-dask==2021.1.0
+dask==2021.10.0
 decorator==4.4.2
 Flask==1.1.1
 Flask-Cors==3.0.8
