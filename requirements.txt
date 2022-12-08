@@ -3,7 +3,7 @@ astor==0.8.1
 astroid==2.4.2    
 autopep8==1.5.4   
 cachelib==0.1.1   
-certifi==2020.12.5
+certifi==2022.12.7
 chardet==4.0.0    
 Click==7.0
 cloudpickle==1.6.0
